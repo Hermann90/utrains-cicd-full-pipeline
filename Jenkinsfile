@@ -10,8 +10,9 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
-                            sh 'chmod +x gradlew'
-                            sh ' ./gradlew sonarqube --debug output'
+                        sh 'find ~/.gradle -type f -name "*.lock" -delete'
+                        sh 'chmod +x gradlew'
+                        sh ' ./gradlew sonarqube --debug output'
                     }
                 }  
             }
